@@ -1,0 +1,27 @@
+def all_possible_coordinates(dimensions):
+    """A function that returns all possible coordinates in a given board.
+
+    Args:
+        dimensions (tuple): 
+
+    Returns:
+        list: list of tuples of all possible coordinates
+    """
+    #base case: 1d board 
+    if len(dimensions) == 1:
+        coordinates_list = []
+        for i in range(dimensions[0]):
+            coordinates_list.append((i,))
+        return coordinates_list
+
+    #recursive step:
+    else:
+        first_list = all_possible_coordinates(dimensions[:-1]) #list of tuples
+        new_list = []
+        for each_tuple in first_list:
+            for i in range(dimensions[-1]):
+                new_tuple = each_tuple + (i,)
+                new_list.append(new_tuple)
+        return new_list
+dimensions = (3, 2)
+print(all_possible_coordinates(dimensions))
